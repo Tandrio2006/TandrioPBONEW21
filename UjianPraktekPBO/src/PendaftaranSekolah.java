@@ -23,7 +23,7 @@ public class PendaftaranSekolah extends javax.swing.JFrame {
      */
     public static Connection con() throws ClassNotFoundException, SQLException{
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String mysqlUrl = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=Ujian_PBO;TrustServerCertificate=true;Encrypt=false;";
+        String mysqlUrl = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=Tandrio;TrustServerCertificate=true;Encrypt=false;";
         Connection con = DriverManager.getConnection(mysqlUrl, "Tandrio", "Drio2006");
         return con;
     }
