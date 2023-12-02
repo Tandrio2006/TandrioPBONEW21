@@ -29,6 +29,28 @@ public class Tabel extends javax.swing.JFrame {
      */
     public Tabel() {
         initComponents();
+         Connection con;
+        DefaultTableModel model = (DefaultTableModel)tabel_mhs.getModel();
+        try{
+         con = con();
+         PreparedStatement pst = con.prepareStatement(String.format("Select * FROM Tabel_mhs"));
+         ResultSet rst = pst.executeQuery();
+         while(rst.next()){
+             model.addRow(new Object[]{
+                rst.getString("Nama"),
+                rst.getString("Jurusan"),
+                rst.getString("Email"),
+                rst.getString("Password"),
+                rst.getString("Jenis_Kelamin"),
+                rst.getString("Tanggal_Lahir"),
+                rst.getString("Alamat")
+             });
+         }
+        } catch (ClassNotFoundException ex) {
+         Logger.getLogger(Tabel.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (SQLException ex) {
+         Logger.getLogger(Tabel.class.getName()).log(Level.SEVERE, null, ex);
+     }
     }
 
     /**
@@ -56,14 +78,10 @@ public class Tabel extends javax.swing.JFrame {
 
         tabel_mhs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Nama", "Nim", "Program Studi", "Email", "Password", "Jenis Kelamin", "Tanggal Lahir", "Alamat"
+                "Nama", "Jurusan", "Email", "Password", "Jenis_Kelamin", "Tanggal_Lahir", "Alamat"
             }
         ));
         jScrollPane1.setViewportView(tabel_mhs);
@@ -148,29 +166,7 @@ public class Tabel extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Connection con;
-        DefaultTableModel model = (DefaultTableModel)tabel_mhs.getModel();
-        try{
-         con = con();
-         PreparedStatement pst = con.prepareStatement(String.format("Select * FROM Tabel_mhs"));
-         ResultSet rst = pst.executeQuery();
-         while(rst.next()){
-             model.addRow(new Object[]{
-                rst.getString("Nama"),
-                rst.getString("Nim"),
-                rst.getString("Program Studi"),
-                rst.getString("Email"),
-                rst.getString("Password"),
-                rst.getString("Jenis Kelamin"),
-                rst.getString("Tanggal Lahir"),
-                rst.getString("Alamat")
-             });
-         }
-        } catch (ClassNotFoundException ex) {
-         Logger.getLogger(Tabel.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (SQLException ex) {
-         Logger.getLogger(Tabel.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
